@@ -32,12 +32,11 @@ The base cases are numbers that cannot be divided anymore, which is `1` and `2`.
 After base cases, you need a loop to go from `n-1` to `1`, and the iterator is the number you want to add to the equation. Thus, you need to bring in the last number you have 
 in the equation, because the number you add to the equation should not bigger than the value before it. 
 
-Then, if the iterator is smaller than the last number, you can make the recursive call. Just make sure you wont't have the case like `...+4+4`. You can add a boolean
-value to the argument to handle that problem. 
+Then, if the iterator is smaller than the last number, you can make the recursive call. This will handle the problems of `8=4+4` and `9=2+4+3`. 
 
 In order to print out all equations, you need to bring in a string, and add the number to the string with a `+` if you still need to going on. 
 
-However, this method reuse small numbers a lot, so it takes much longer time to find the solution for big numbers. 
+However, this method reuse recursive calls with small inputs a lot, so it takes much longer time to find the solution for big numbers. 
 
 Thus, I will introduce the second method that you can store all data that you need in a `n*n` matrix.
 
