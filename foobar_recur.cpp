@@ -3,34 +3,31 @@
 
 using namespace std;
 
-int foo(int& count, int num, int* list, string ans, bool start, int last)
+void foo(int& count, int num, string ans, bool start, int last)
 {
-
+    //base cases
     if (num == 1)
     {
-        list[1] = 0;
         cout << ans << "1" << endl;
         count++;
-        return 1;
+        return;
     }
     if (num == 2)
     {
-        list[2] = 0;
-        
         if (last < 2)
-        return 1;
+        return;
         if (last != 2)
         {
             cout << ans << "2" << endl;
-        count++;
+            count++;
         }
         
-        return 1;
+        return;
     }
-    int i;
-    for (i = num; i > 0; i--)
+
+    for (int i = num; i > 0; i--)
     {
-        if (start && i == num) continue;
+        if (start && i == num) continue; //first number should not equal to the input
         if (i >= last) continue;
 
         stringstream ss;
@@ -40,14 +37,8 @@ int foo(int& count, int num, int* list, string ans, bool start, int last)
             cout << ans+ss.str() << endl;
             count++;
         }
-        int temp = foo(count, num-i, list, ans+ss.str()+"+", false, i);
-
+        foo(count, num-i, ans+ss.str()+"+", false, i); 
     }
-   
-
-    list[num] = count;
-    return count;
-
 }
 
 int main()
@@ -56,14 +47,9 @@ int main()
     string input;
     cin >> input;
     int number = stoi(input);
-    int c[number+1];
-    for (int i = 0; i < number+1; i++)
-    {
-        c[i] = 0;
-    }
     string ans = "";
     int count = 0;
-    cout << foo(count, number, c, ans, true, number) << endl;
-    
-   
+    foo(count, number, ans, true, number); //this will print out all equations
+    cout << count << endl;
+    return 0;
 }
