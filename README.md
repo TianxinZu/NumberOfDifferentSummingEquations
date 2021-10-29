@@ -30,8 +30,9 @@ With recursion, you can print out all the equations, but it will take lots of ti
 
 The base cases are numbers that cannot be divided anymore, which is `1` and `2`.
 
-After base cases, you need a loop to go from `n-1` to `1`, and the iterator is the number you want to add to the equation. Thus, you need to bring in the last number you have
-in the equation, because the number you add to the equation should not bigger than the value before it.
+After base cases, you need a loop to go from `n-1` to `1`, and the iterator is the number you want to add to the equation. Thus, you need to bring in the last number you 
+
+have in the equation, because the number you add to the equation should not bigger than the value before it.
 
 Then, if the iterator is smaller than the last number, you can make the recursive call. This will handle the problems of `8=4+4` and `9=2+4+3`.
 
@@ -43,4 +44,14 @@ Thus, I will introduce the second method that you can store all data that you ne
 
 ## Solution with matrix
 
-TBC
+First, we need a matrix of size `(n+1)*(n+1)`. In position `(i,j)`, the number should be the number of ways to sum to i with the first number is j, and it should be the 
+
+sum of `(j,i-j-1) to (j,0)`. 
+
+For example, in position `(7,4)`, the number means that the number of ways to write `7=4+...`. The rest of the equation has a sum of 3, and the leading number should no
+
+bigger than 4, the first number of the equation. Thus, it should be: `3=3`, `3=2+1`. 
+
+To get the final answer for n, just sum from `(n,n-1) to (n,0)`. 
+
+For more explicit explanation, you can look at the picture in the repository. 
